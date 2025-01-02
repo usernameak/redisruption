@@ -1,7 +1,7 @@
 /*
  * -------------------------------------------------------------------
- * Disruption
- * Copyright (c) 2022 SciRave
+ * Redisruption
+ * Copyright (c) 2025 SciRave
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -11,6 +11,8 @@
 
 package net.scirave.disruption;
 
+import net.fabricmc.api.ModInitializer;
+import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.block.Block;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKeys;
@@ -19,8 +21,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.event.GameEvent;
-import org.quiltmc.loader.api.ModContainer;
-import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
 
 import java.util.HashSet;
 import java.util.logging.Level;
@@ -53,11 +53,13 @@ public class Disruption implements ModInitializer {
 	public static TagKey<GameEvent> getGameEventTag(String id) {
 		return TagKey.of(RegistryKeys.GAME_EVENT, getIdentifier(id));
 	}
+
     @Override
-    public void onInitialize(ModContainer mod) {
+    public void onInitialize() {
 		Registry.register(Registries.GAME_EVENT, Identifier.tryParse(FIRE_SPREAD.getId()), FIRE_SPREAD);
 		Registry.register(Registries.GAME_EVENT, Identifier.tryParse(BLOCK_EXPLODED.getId()), BLOCK_EXPLODED);
-        Logger.getLogger(MOD_ID).log(Level.INFO, "[{}] It's raining stone and.. barrels?", mod.metadata().name());
+
+        Logger.getLogger(MOD_ID).log(Level.INFO, "[{}] It's raining stone and.. barrels?", MOD_ID);
     }
 }
 

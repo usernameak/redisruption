@@ -1,7 +1,7 @@
 /*
  * -------------------------------------------------------------------
- * Disruption
- * Copyright (c) 2022 SciRave
+ * Redisruption
+ * Copyright (c) 2025 SciRave
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -92,7 +92,7 @@ public class BlockHandler {
 
 	public static boolean isBuoyant(BlockState state) {
 		Block block = state.getBlock();
-		return state.isLavaIgnitable() || block.getSlipperiness() > 0.6f || state.isIn(Disruption.BUOYANT);
+		return state.isBurnable() || block.getSlipperiness() > 0.6f || state.isIn(Disruption.BUOYANT);
 	}
 
     public static boolean canHang(BlockState state) {
@@ -197,7 +197,7 @@ public class BlockHandler {
         return false;
     }
 	public static boolean isBlockReplaceable(BlockState state) {
-		return state.materialReplaceable() || state.getPistonBehavior() == PistonBehavior.DESTROY;
+		return state.isReplaceable() || state.getPistonBehavior() == PistonBehavior.DESTROY;
 	}
 
 	public static boolean isBlockIntangible(BlockState state, World world, BlockPos pos) {
@@ -241,7 +241,7 @@ public class BlockHandler {
 				if (fallingBlock.blockEntityData != null && blockState.hasBlockEntity()) {
 					BlockEntity blockEntity = world.getBlockEntity(blockPos);
 					if (blockEntity != null) {
-						NbtCompound nbtCompound = blockEntity.toNbt();
+						NbtCompound nbtCompound = blockEntity.createNbt();
 
 						for (String string : fallingBlock.blockEntityData.getKeys()) {
 							nbtCompound.put(string, fallingBlock.blockEntityData.get(string).copy());
@@ -269,7 +269,7 @@ public class BlockHandler {
         Block block = state.getBlock();
 
 		if (block instanceof FallingBlock) {
-			FallingBlockEntity.fall(world, pos, state);
+			FallingBlockEntity.spawnFromBlock(world, pos, state);
 			return;
 		}
 
@@ -277,7 +277,7 @@ public class BlockHandler {
             state = block.getDefaultState();
         }
 
-        FallingBlockEntity fallingBlock = FallingBlockEntity.fall(world, pos, state);
+        FallingBlockEntity fallingBlock = FallingBlockEntity.spawnFromBlock(world, pos, state);
 		((FallingGroupInterface) fallingBlock).setFallingGroup(fallingGroup);
 		fallingGroup.add(fallingBlock);
 

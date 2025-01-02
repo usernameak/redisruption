@@ -1,7 +1,7 @@
 /*
  * -------------------------------------------------------------------
- * Disruption
- * Copyright (c) 2022 SciRave
+ * Redisruption
+ * Copyright (c) 2025 SciRave
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -45,8 +45,8 @@ public class ServerWorldMixin {
 		}
 	}
 	@Inject(method = "emitGameEvent", at = @At("RETURN"))
-	public void disruption$detectDisruption(GameEvent event, Vec3d pos, GameEvent.Context context, CallbackInfo CIR) {
-		BlockPos blockPos = BlockPos.fromPosition(pos);
+	public void disruption$detectDisruption(GameEvent event, Vec3d pos, GameEvent.Emitter context, CallbackInfo CIR) {
+		BlockPos blockPos = BlockPos.ofFloored(pos);
 
 		if (event.isIn(Disruption.ENTITY_DISRUPTION)) {
 			disruption.add(blockPos);

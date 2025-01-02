@@ -1,7 +1,7 @@
 /*
  * -------------------------------------------------------------------
- * Disruption
- * Copyright (c) 2022 SciRave
+ * Redisruption
+ * Copyright (c) 2025 SciRave
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -29,7 +29,7 @@ public abstract class BlockMixin {
 
     @Inject(method = "onDestroyedByExplosion", at = @At("RETURN"))
     protected void disruption$blockExploded(World world, BlockPos pos, Explosion explosion, CallbackInfo ci) {
-		GameEvent.Context context = GameEvent.Context.create(world.getBlockState(pos));
+		GameEvent.Emitter context = GameEvent.Emitter.of(world.getBlockState(pos));
 		world.emitGameEvent(Disruption.BLOCK_EXPLODED, Vec3d.of(pos), context);
     }
 }

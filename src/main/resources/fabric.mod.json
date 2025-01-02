@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "disruption",
+  "version": "${version}",
+  "name": "Redisruption",
+  "description": "A mod about about cave-ins and falling blocks.",
+  "authors": [
+    "qxeii"
+  ],
+  "contact": {
+    "issues": "https://github.com/qxeii/redisruption/issues",
+    "sources": "https://github.com/qxeii/redisruption"
+  },
+  "icon": "assets/disruption/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "net.scirave.disruption.Disruption"
+    ]
+  },
+  "mixins": [
+    "disruption.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.9",
+    "minecraft": "~1.20.1",
+    "java": ">=17",
+    "fabric-api": "*"
+  }
+}
