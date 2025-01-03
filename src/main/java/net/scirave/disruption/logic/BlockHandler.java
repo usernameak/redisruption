@@ -1,7 +1,7 @@
 /*
  * -------------------------------------------------------------------
  * Redisruption
- * Copyright (c) 2025 SciRave
+ * Copyright (c) 2025 SciRave, usernameak
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -27,6 +27,7 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.scirave.disruption.Disruption;
 import net.scirave.disruption.DisruptionConfig;
+import net.scirave.disruption.compat.ValkyrienSkiesCompat;
 import net.scirave.disruption.helpers.FakeAboveShapeContext;
 import net.scirave.disruption.helpers.FallingGroupInterface;
 
@@ -52,6 +53,10 @@ public class BlockHandler {
 	}
 
     public static boolean blockViable(BlockState state, World world, BlockPos pos) {
+		if (ValkyrienSkiesCompat.checkBlockInVSShip(world, pos)) {
+			return false;
+		}
+
 		PistonBehavior behavior = state.getPistonBehavior();
 		if (behavior == PistonBehavior.BLOCK || behavior == PistonBehavior.IGNORE) return false;
 
@@ -304,6 +309,7 @@ public class BlockHandler {
 
 		return activity;
     }
+
     public static boolean update(World world, BlockPos pos, FallingBlockGroup fallingGroup, int updates) {
 		if (updates > DisruptionConfig.getMaxBlockUpdates()) return false;
         BlockState state = world.getBlockState(pos);

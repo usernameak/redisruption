@@ -12,7 +12,7 @@
     "sources": "https://github.com/qxeii/redisruption"
   },
   "icon": "assets/disruption/icon.png",
-  "environment": "server",
+  "environment": "*",
   "entrypoints": {
     "main": [
       "net.scirave.disruption.Disruption"

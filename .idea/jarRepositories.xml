@@ -71,5 +71,25 @@
       <option name="name" value="LoomLocalMinecraft" />
       <option name="url" value="file:/$PROJECT_DIR$/.gradle/loom-cache/minecraftMaven/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="Valkyrien Skies Internal" />
+      <option name="name" value="Valkyrien Skies Internal" />
+      <option name="url" value="https://maven.valkyrienskies.org" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="LoomTransformedForgeDependencies" />
+      <option name="name" value="LoomTransformedForgeDependencies" />
+      <option name="url" value="file:/$USER_HOME$/.gradle/caches/fabric-loom/forge/transformed-dependencies-v1" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="Architectury" />
+      <option name="name" value="Architectury" />
+      <option name="url" value="https://maven.architectury.dev/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="Forge" />
+      <option name="name" value="Forge" />
+      <option name="url" value="https://maven.minecraftforge.net/" />
+    </remote-repository>
   </component>
 </project>
